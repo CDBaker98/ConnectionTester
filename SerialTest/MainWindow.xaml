@@ -1,0 +1,211 @@
+﻿<Window x:Class="SerialTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SerialTest"
+        mc:Ignorable="d"
+        Height="500" Width="750"
+        Title="Communication Testing Application"
+        Closing="Window_Closing">
+
+    <Grid>
+        <TabControl>
+            <TabItem Header="Serial Connection" Height="25" Width="150">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="120"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="Port Name: " Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <ComboBox Name="cmbPortName" Grid.Row="0" Grid.Column="1" Height="30" VerticalContentAlignment="Center">
+                            <ComboBoxItem Content="--" IsSelected="True"/>
+                        </ComboBox>
+
+                        <Label Content="Baud Rate: " Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <ComboBox Name="cmbBaudRate" Grid.Row="1" Grid.Column="1" Height="30" VerticalContentAlignment="Center">
+                            <ComboBoxItem Content="--" IsSelected="True"/>
+                            <ComboBoxItem Content="75"/>
+                            <ComboBoxItem Content="110"/>
+                            <ComboBoxItem Content="300"/>
+                            <ComboBoxItem Content="1200"/>
+                            <ComboBoxItem Content="2400"/>
+                            <ComboBoxItem Content="4800"/>
+                            <ComboBoxItem Content="9600"/>
+                            <ComboBoxItem Content="19200"/>
+                            <ComboBoxItem Content="38400"/>
+                            <ComboBoxItem Content="57600"/>
+                            <ComboBoxItem Content="115200"/>
+                            <ComboBoxItem>
+                                <TextBox Width="90" VerticalContentAlignment="Center"/>
+                            </ComboBoxItem>
+                        </ComboBox>
+
+                        <Label Content="Parity: " Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <ComboBox Name="cmbParity" Grid.Row="2" Grid.Column="1" Height="30" VerticalContentAlignment="Center">
+                            <ComboBoxItem Content="--" IsSelected="True"/>
+                            <ComboBoxItem Content="None"/>
+                            <ComboBoxItem Content="Odd"/>
+                            <ComboBoxItem Content="Even"/>
+                            <ComboBoxItem Content="Mark"/>
+                            <ComboBoxItem Content="Space"/>
+                        </ComboBox>
+
+                        <Label Content="Data Bits: " Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <ComboBox Name="cmbDataBits" Grid.Row="3" Grid.Column="1" Height="30" VerticalContentAlignment="Center">
+                            <ComboBoxItem Content="--" IsSelected="True"/>
+                            <ComboBoxItem Content="5"/>
+                            <ComboBoxItem Content="6"/>
+                            <ComboBoxItem Content="7"/>
+                            <ComboBoxItem Content="8"/>
+                            <ComboBoxItem Content="9"/>
+                        </ComboBox>
+
+                        <Label Content="Stop Bits: " Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalContentAlignment="Right"/>
+                        <ComboBox Name="cmbStopBits" Grid.Row="4" Grid.Column="1" Height="30" VerticalContentAlignment="Center">
+                            <ComboBoxItem Content="--" IsSelected="True"/>
+                            <ComboBoxItem Content="0"/>
+                            <ComboBoxItem Content="1"/>
+                            <ComboBoxItem Content="1.5"/>
+                            <ComboBoxItem Content="2"/>
+                            <ComboBoxItem>
+                                <TextBox Width="90" VerticalContentAlignment="Center"/>
+                            </ComboBoxItem>
+                        </ComboBox>
+
+                        <Label Content="Handshake: " Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalContentAlignment="Right"/>
+                        <ComboBox Name="cmbHandshake" Grid.Row="5" Grid.Column="1" Height="30" VerticalContentAlignment="Center">
+                            <ComboBoxItem Content="--" IsSelected="True"/>
+                            <ComboBoxItem Content="None"/>
+                            <ComboBoxItem Content="XOnXOff"/>
+                            <ComboBoxItem Content="RequestToSend"/>
+                            <ComboBoxItem Content="RequestToSendXOnXOff"/>
+                        </ComboBox>
+
+                        <Label Content="Rts Enable: " Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" HorizontalContentAlignment="Right"/>
+                        <ComboBox Name="cmbRtsEnable" Grid.Row="6" Grid.Column="1" Height="30" VerticalContentAlignment="Center">
+                            <ComboBoxItem Content="--" IsSelected="True"/>
+                            <ComboBoxItem Content="True"/>
+                            <ComboBoxItem Content="False"/>
+                        </ComboBox>
+
+                        <Button Name="btnStart" Grid.Row="7" Grid.ColumnSpan="2" Content="Start" Click="SerialConnection_Main" Height="30" />
+                        <Button Name="btnKillConnection" Grid.Row="8" Grid.ColumnSpan="2" Content="Kill connection" Click="BtnKillConnection_Click" Height="30"/>
+                    </Grid>
+
+
+                    <GridSplitter Grid.Column="1" Background="White" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+
+
+                    <Grid Grid.Column="2" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="Command: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBox Name="txtCommand" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" VerticalContentAlignment="Center" Height="30"/>
+
+                        <CheckBox Name="cbResetCommand" Grid.Row="0" Grid.Column="2" Content="Reset Command" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <RadioButton Name="rbCRSerial" GroupName="AutoEndingSerial" Content="\r" Width="50"/>
+                            <RadioButton Name="rbLFSerial" GroupName="AutoEndingSerial" Content="\n" Width="50"/>
+                            <RadioButton Name="rbCRLFSerial" GroupName="AutoEndingSerial" Content="\r\n" Width="50"/>
+                            <RadioButton GroupName="AutoEndingSerial" Content="Manual" IsChecked="True"/>
+                        </StackPanel>
+
+                        <Button Name="btnSendSerial" Content="Send" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Height="30"  Click="BtnSendSerial_Click"/>
+
+                        <Label Content="Response: " Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBox Name="txtResponseSerial" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Text="{Binding SerialResponse, Mode=OneWay}" IsReadOnly="True" ScrollViewer.CanContentScroll="True" Margin="0,5,0,0" TextChanged="txtResponseSerial_TextChanged"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+
+
+
+            <TabItem Header="Socket Connection" Height="25" Width="150">
+                <Grid Background="#FFE5E5E5">
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="IP: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBox Name="txtIP" Grid.Row="0" Grid.Column="1" Height="30" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center"/>
+
+                        <Label Content="Port: " Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBox Name="txtPort" Grid.Row="1" Grid.Column="1" Height="30" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center"/>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <RadioButton Name="rbTCPSocket" GroupName="SocketType" Content="TCP" Width="50"/>
+                            <RadioButton Name="rbUDPSocket" GroupName="SocketType" Content="UDP" Width="50"/>
+                        </StackPanel>
+
+                        <Button Name="btnConnect" Content="Connect" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="30" Click="BtnConnect_Click"/>
+
+                        <Label Content="Command: " Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalContentAlignment="Right"/>
+                        <TextBox Name="txtCommandSocket" Grid.Row="4" Grid.Column="1" Height="30" TextWrapping="Wrap" VerticalContentAlignment="Center"/>
+
+                        <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <RadioButton Name="rbCRSocket" GroupName="AutoEndingSocket" Content="\r"  Width="50"/>
+                            <RadioButton Name="rbLFSocket" GroupName="AutoEndingSocket" Content="\n" Width="50"/>
+                            <RadioButton Name="rbCRLFSocket" GroupName="AutoEndingSocket" Content="\r\n" Width="50"/>
+                            <RadioButton GroupName="AutoEndingSocket" Content="Manual" IsChecked="True"/>
+                        </StackPanel>
+
+                        <Button Name="btnSendSocket" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Content="Send" Height="30" Click="BtnSendSocket_Click"/>
+
+                        <Label Content="Response: " Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBox Name="txtResponseSocket" Grid.Row="7" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3" Text="{Binding SocketResponse, Mode=OneWay}" IsReadOnly="True" ScrollViewer.CanContentScroll="True" Margin="0,5,0,0" TextChanged="txtResponseSocket_TextChanged"/>
+                        
+                        <Button Name="BtnClear" Grid.Row="6" Grid.Column="3" Content="Clear" Height="30" Click="BtnClear_Click"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
